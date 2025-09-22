@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gallery Photo</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</head>
+<body>
+
+  <!-- Header (tetap seperti struktur awal) -->
+  <header class="header">
+    <div class="logo-wrapper">
+      <img src="images/header_logo.png" alt="Logo" class="logo-img">
+        <span class="logo-text">
+          <i class="fa-solid fa-camera" style="color: #005c91;"></i> Gallery Photo
+        </span>
+    </div>
+
+    <nav class="toolbar">
+      <button class="download"><i class="fa-solid fa-cloud-arrow-down"></i> Download</button>
+      <button class="slideshow"><i class="fa-regular fa-circle-play"></i> Slideshow</button>
+      <button class="shuffle"><i class="fa-solid fa-shuffle"></i> Shuffle</button>
+    </nav>
+
+    <div class="hamburger"><i class="fa-solid fa-bars"></i></div>
+  </header>
+
+  <!-- Gallery Container -->
+  <main class="gallery-container">
+    <div id="gallery" class="gallery"></div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+      <button id="prev">‹</button>
+      <div id="page-numbers"></div>
+      <button id="next">›</button>
+    </div>
+  </main>
+
+    <!-- POPUP GALLERY (single popup for full image) -->
+  <div id="popup" class="popup" aria-hidden="true">
+    <!-- Close button (inside popup) -->
+    <span class="close-btn" id="closePopup" title="Close (Esc)">
+      <i class="fa-solid fa-arrow-left"></i>
+    </span>
+
+    <!-- Slideshow Close (pojok kanan atas, hanya muncul saat slideshow aktif) -->
+    <button id="slideshowClose" class="slideshow-close" title="Stop Slideshow">&times;</button>
+
+    <div class="popup-content">
+      <img id="popupImg" src="" alt="Full View">
+      <div id="popupFilename" class="popup-filename"></div>
+    </div>
+
+    <!-- Navigation arrows -->
+    <span class="nav left" id="popupPrev" title="Previous">
+      <i class="fa-solid fa-chevron-left"></i>
+    </span>
+    <span class="nav right" id="popupNext" title="Next">
+      <i class="fa-solid fa-chevron-right"></i>
+    </span>
+  </div>
+
+  <!-- DOWNLOAD POPUP (OUTSIDE #popup so it won't be hidden by #popup) -->
+  <!-- Outer id matches some of your CSS variants, inner id matches JS -->
+  <!-- DOWNLOAD POPUP -->
+<div id="downloadPopup" class="download-popup" style="display:none;">
+  <div class="download-popup-content" role="dialog" aria-modal="true" aria-labelledby="downloadTitle">
+    <span class="close-download" id="closeDownloadPopup" title="Close">&times;</span>
+
+    <h3 id="downloadTitle">Download Photo</h3>
+
+    <button id="saveDevice" class="download-option" type="button">
+      <span class="icon"><i class="fa-solid fa-computer"></i></span>
+      <span class="text">Save to My Device</span>
+    </button>
+
+    <label class="remember" style="display:block; margin-top:12px; font-size:14px; color:#666;">
+      <input type="checkbox" id="rememberChoice"> Remember my selection
+    </label>
+  </div>
+</div>
+
+  <!-- Footer (tetap) -->
+  <footer class="footer">
+    <p>© 2025 Stevi Event Project. All rights reserved · Crafted with ❤️</p>
+    <div class="socials">
+      <a href="https://www.instagram.com/stevi.eventproject/"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://wa.me/6281220009287"><i class="fa-brands fa-whatsapp"></i></a>
+    </div>
+  </footer>
+
+  <script>
+    // Keep page scrolled to top on reload
+    window.onbeforeunload = function () {
+      window.scrollTo(0, 0);
+    };
+  </script>
+
+  <!-- main script (pastikan ini di-load setelah elemen DOM di atas) -->
+  <script src="js/script.js"></script>
+</body>
+</html>
