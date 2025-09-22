@@ -5,6 +5,7 @@
 const gallery = document.getElementById("gallery");
 const popup = document.getElementById("popup");
 const popupImg = document.getElementById("popupImg");
+const popupDownload = document.getElementById("popupDownload");
 const closePopup = document.getElementById("closePopup");
 const popupPrev = document.getElementById("popupPrev");
 const popupNext = document.getElementById("popupNext");
@@ -189,6 +190,7 @@ function openPopup(index) {
   setTimeout(() => popup.classList.add("show"), 10);
   showImage(currentIndex);
 }
+
 function showImage(index) {
   if (!images[index]) return;
   popupImg.src = images[index].full;
@@ -197,7 +199,15 @@ function showImage(index) {
   if (popupFilename) {
     const fileName = images[index].full.split("/").pop();
     popupFilename.textContent = fileName;
+    popupDownload.dataset.file = fileName; // simpan file di tombol
   }
+}
+
+if (popupDownload) {
+  popupDownload.addEventListener("click", () => {
+    const fileName = popupDownload.dataset.file;
+    if (fileName) openDownloadPopup(fileName);
+  });
 }
 
 function closePopupFn() {
@@ -380,4 +390,22 @@ slideshowCloseBtn.addEventListener("click", () => {
   popup.setAttribute("aria-hidden", "true");
 });
 
+// ========== SHUFFLE ==========
+const shuffleBtn = document.querySelector(".shuffle");
+
+if (shuffleBtn) {
+  shuffleBtn.addEventListener("click", () => {
+    shuffleImages();
+    currentPage = 1; // kembali ke halaman 1
+    renderGallery();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
+
+function shuffleImages() {
+  for (let i = images.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [images[i], images[j]] = [images[j], images[i]]; // swap
+  }
+}
 
