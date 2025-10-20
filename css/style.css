@@ -854,3 +854,35 @@ body {
   cursor: pointer;
   transition: transform 0.2s ease;
 }
+
+/* === RAPIKAN HEADER DI MOBILE === */
+@media (max-width: 768px) {
+  .header {
+    padding: 8px 14px; /* kurangi padding kanan-kiri agar lebih lega */
+  }
+
+  .logo-wrapper {
+    gap: 6px; /* jarak ikon kamera dan teks lebih rapat */
+  }
+
+  .logo-text {
+    font-size: 1rem;       /* kecilkan ukuran teks */
+    white-space: nowrap;   /* cegah teks turun ke bawah */
+  }
+
+  .logo-text i {
+    font-size: 1rem;       /* kecilkan ikon kamera */
+  }
+
+  /* jika masih terlalu panjang, bisa buat teks jadi dua baris */
+  .logo-text span {
+    display: block;
+    font-size: 0.9rem;
+    line-height: 1.1;
+  }
+
+  /* hamburger beri sedikit jarak biar tidak terlalu dekat */
+  .hamburger {
+    margin-left: 8px;
+  }
+}
